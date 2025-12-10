@@ -31,7 +31,10 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- Code Quality: Confirm clean code practices, baby steps approach, and conventional commits will be followed.
+- Testing Standards: Ensure comprehensive testing plan including unit, integration, and e2e tests.
+- User Experience Consistency: Verify mobile-first design and AA accessibility compliance.
+- Performance Requirements: Define and commit to performance benchmarks.
 
 ## Project Structure
 

@@ -100,6 +100,13 @@
 - **[Entity 1]**: [What it represents, key attributes without implementation]
 - **[Entity 2]**: [What it represents, relationships to other entities]
 
+### Non-Functional Requirements *(mandatory per constitution)*
+
+- **NFR-001**: System MUST achieve AA accessibility compliance (WCAG 2.1 AA).
+- **NFR-002**: System MUST be responsive and optimized for mobile-first design.
+- **NFR-003**: System MUST meet performance benchmarks [specify metrics, e.g., <2s load time, <100ms response time].
+- **NFR-004**: System MUST include comprehensive automated tests (unit, integration, e2e).
+
 ## Success Criteria *(mandatory)*
 
 <!--

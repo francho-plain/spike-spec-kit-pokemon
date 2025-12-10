@@ -1,50 +1,37 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Version change: 1.0.0 → 1.0.1
+List of modified principles: Code Quality (clarified conventional commit format)
+Added sections: None
+Removed sections: None
+Templates requiring updates: None
+Follow-up TODOs: None
+-->
+# Spec Kit Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Code Quality
+All code must adhere to clean code principles: readable, maintainable, and well-structured. Development follows baby steps: small, incremental changes. Commits must use conventional commit format with type(scope): description, and include in the body summaries of changes since the last commit and representative copilot prompts to ensure traceability and clarity.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Testing Standards
+Comprehensive testing is mandatory. Follow test-driven development (TDD) where feasible. Include unit tests for all functions, integration tests for components, and end-to-end tests for user flows. Tests must be automated and run in CI/CD pipelines.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. User Experience Consistency
+All interfaces must be designed mobile-first, ensuring responsive design across devices. Accessibility AA compliance is mandatory, including keyboard navigation, screen reader support, and color contrast. Maintain consistent UX patterns and branding across all platforms and touchpoints.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Performance Requirements
+Code must meet defined performance benchmarks for speed, memory usage, and scalability. Optimize for efficient resource utilization. Performance tests must be included in the test suite, and regressions must be addressed immediately.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+## Technical Standards
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+These principles guide all technical decisions: Code quality ensures maintainability; testing ensures reliability; UX consistency ensures usability; performance ensures efficiency. All technical choices must align with these principles, with justifications required for any deviations.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+## Development Workflow
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Code reviews must verify compliance with principles. CI/CD must include automated tests, accessibility checks, and performance benchmarks. Conventional commits enforce discipline in change tracking.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+Constitution supersedes all other practices. Amendments require consensus from stakeholders, documentation, and migration plans. All decisions must reference relevant principles. Versioning follows semantic versioning.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.1 | **Ratified**: 2025-12-10 | **Last Amended**: 2025-12-10
