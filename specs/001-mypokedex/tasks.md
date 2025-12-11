@@ -26,13 +26,13 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize TypeScript React project with Vite
-- [ ] T003 Install and configure dependencies (React, Axios, React Query, TypeScript)
-- [ ] T004 [P] Setup testing frameworks (Jest, React Testing Library, Playwright)
-- [ ] T005 [P] Configure linting and formatting (ESLint, Prettier)
-- [ ] T006 [P] Setup accessibility tools (axe-core, React Aria)
-- [ ] T007 Configure build and development scripts
+- [X] T001 Create project structure per implementation plan
+- [X] T002 Initialize TypeScript React project with Vite
+- [X] T003 Install and configure dependencies (React, Axios, React Query, TypeScript)
+- [X] T004 [P] Setup testing frameworks (Jest, React Testing Library, Playwright)
+- [X] T005 [P] Configure linting and formatting (ESLint, Prettier)
+- [X] T006 [P] Setup accessibility tools (axe-core, React Aria)
+- [X] T007 Configure build and development scripts
 
 ---
 
@@ -42,14 +42,14 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T008 Implement TypeScript interfaces from data-model.md
-- [ ] T009 Create PokeAPI client service in src/services/pokeApi.ts
-- [ ] T010 [P] Create local storage service in src/services/localStorage.ts
-- [ ] T011 Setup React Query configuration for API caching
-- [ ] T012 Configure React Router for page navigation
-- [ ] T013 Create base App component with routing structure
-- [ ] T014 Setup global error boundary and loading states
-- [ ] T015 Configure CSS Modules for component styling
+- [X] T008 Implement TypeScript interfaces from data-model.md
+- [X] T009 Create PokeAPI client service in src/services/pokeApi.ts
+- [X] T010 [P] Create local storage service in src/services/localStorage.ts
+- [X] T011 Setup React Query configuration for API caching
+- [X] T012 Configure React Router for page navigation
+- [X] T013 Create base App component with routing structure
+- [X] T014 Setup global error boundary and loading states
+- [X] T015 Configure CSS Modules for component styling
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -63,20 +63,20 @@
 
 ### Tests for User Story 1
 
-- [ ] T016 [P] [US1] Contract test for Pokemon API endpoints in tests/contract/test-pokeapi.ts
-- [ ] T017 [P] [US1] Unit tests for data transformation utilities in tests/unit/utils/
-- [ ] T018 [US1] Integration test for search functionality in tests/integration/test-search.ts
-- [ ] T019 [US1] E2E test for search and view user flow in tests/e2e/specs/search-pokemon.spec.ts
+- [X] T016 [P] [US1] Contract test for Pokemon API endpoints in tests/contract/test-pokeapi.ts
+- [X] T017 [P] [US1] Unit tests for data transformation utilities in tests/unit/utils/
+- [X] T018 [US1] Integration test for search functionality in tests/integration/test-search.ts
+- [X] T019 [US1] E2E test for search and view user flow in tests/e2e/specs/search-pokemon.spec.ts
 
 ### Implementation for User Story 1
 
-- [ ] T020 [P] [US1] Create PokemonCard component in src/components/PokemonCard.tsx
-- [ ] T021 [P] [US1] Create SearchBar component with auto-complete in src/components/SearchBar.tsx
-- [ ] T022 [US1] Create Home page with search and results in src/pages/Home.tsx
-- [ ] T023 [US1] Create PokemonDetail page in src/pages/PokemonDetail.tsx
-- [ ] T024 [US1] Implement routing between Home and PokemonDetail pages
-- [ ] T025 [US1] Add loading skeletons for API calls in components
-- [ ] T026 [US1] Implement error handling for failed API requests
+- [X] T020 [P] [US1] Create PokemonCard component in src/components/PokemonCard.tsx
+- [X] T021 [P] [US1] Create SearchBar component with auto-complete in src/components/SearchBar.tsx
+- [X] T022 [US1] Create Home page with search and results in src/pages/Home.tsx
+- [X] T023 [US1] Create PokemonDetail page in src/pages/PokemonDetail.tsx
+- [X] T024 [US1] Implement routing between Home and PokemonDetail pages
+- [X] T025 [US1] Add loading skeletons for API calls in components
+- [X] T026 [US1] Implement error handling for failed API requests
 
 **Checkpoint**: US1 complete - users can search and view Pokemon details
 

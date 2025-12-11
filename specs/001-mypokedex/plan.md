@@ -29,6 +29,7 @@ MyPokeDex is a Pokemon discovery application that allows users to search for Pok
 - Testing Standards: Ensure comprehensive testing plan including unit, integration, and e2e tests.
 - User Experience Consistency: Verify mobile-first design and AA accessibility compliance.
 - Performance Requirements: Define and commit to performance benchmarks.
+- Atomic Commits: When completing a phase or user story, create an atomic commit following conventional commit format with descriptive messages that clearly indicate the completed work.
 
 ## Project Structure
 
