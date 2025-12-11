@@ -12,7 +12,7 @@ interface PokemonCardProps {
 
 function PokemonCard({ pokemon, onClick }: PokemonCardProps) {
   return (
-    <div className={styles.card} onClick={onClick}>
+    <div className={styles.card} onClick={onClick} data-testid="pokemon-card">
       <img
         src={pokemon.imageUrl}
         alt={pokemon.name}

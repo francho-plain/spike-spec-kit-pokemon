@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { pokeApi } from '../services/pokeApi'
 import SearchBar from '../components/SearchBar'
 import PokemonCard from '../components/PokemonCard'
@@ -33,7 +33,12 @@ function Home() {
 
   return (
     <div className={styles.home}>
-      <h1>MyPokeDex</h1>
+      <header className={styles.header}>
+        <h1>MyPokeDex</h1>
+        <Link to="/favorites" className={styles.favoritesLink}>
+          View Favorites
+        </Link>
+      </header>
       <SearchBar onSearch={handleSearch} />
       <div className={styles.results}>
         {filteredPokemon.map(pokemon => {

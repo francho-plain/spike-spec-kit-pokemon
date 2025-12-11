@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { pokeApi } from '../services/pokeApi'
+import FavoriteButton from '../components/FavoriteButton'
 import Loading from '../components/Loading'
 import styles from './PokemonDetail.module.css'
 
@@ -22,7 +23,10 @@ function PokemonDetail() {
 
   return (
     <div className={styles.detail}>
-      <h1 className={styles.name}>{pokemon.name}</h1>
+      <div className={styles.header}>
+        <h1 className={styles.name}>{pokemon.name}</h1>
+        <FavoriteButton pokemonId={pokemon.id} pokemonName={pokemon.name} />
+      </div>
       <img src={imageUrl} alt={pokemon.name} className={styles.image} />
       <div className={styles.info}>
         <div className={styles.types}>

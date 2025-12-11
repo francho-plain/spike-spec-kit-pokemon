@@ -90,18 +90,18 @@
 
 ### Tests for User Story 2
 
-- [ ] T027 [P] [US2] Unit tests for local storage service in tests/unit/services/
-- [ ] T028 [US2] Integration test for favorites functionality in tests/integration/test-favorites.ts
-- [ ] T029 [US2] E2E test for favorites user flow in tests/e2e/specs/favorites.spec.ts
+- [X] T027 [P] [US2] Unit tests for local storage service in tests/unit/services/
+- [X] T028 [US2] Integration test for favorites functionality in tests/integration/test-favorites.ts
+- [X] T029 [US2] E2E test for favorites user flow in tests/e2e/specs/favorites.spec.ts
 
 ### Implementation for User Story 2
 
-- [ ] T030 [P] [US2] Create FavoriteButton component in src/components/FavoriteButton.tsx
-- [ ] T031 [US2] Integrate FavoriteButton into PokemonDetail page
-- [ ] T032 [US2] Create Favorites page in src/pages/Favorites.tsx
-- [ ] T033 [US2] Add favorites route to router configuration
-- [ ] T034 [US2] Implement favorites persistence in local storage
-- [ ] T035 [US2] Add navigation to favorites from other pages
+- [X] T030 [P] [US2] Create FavoriteButton component in src/components/FavoriteButton.tsx
+- [X] T031 [US2] Integrate FavoriteButton into PokemonDetail page
+- [X] T032 [US2] Create Favorites page in src/pages/Favorites.tsx
+- [X] T033 [US2] Add favorites route to router configuration
+- [X] T034 [US2] Implement favorites persistence in local storage
+- [X] T035 [US2] Add navigation to favorites from other pages
 
 **Checkpoint**: US2 complete - users can mark and view favorites
 
@@ -145,7 +145,7 @@
 - [ ] T051 [P] Polish mobile responsive design
 - [ ] T052 [P] Add loading states and skeleton screens throughout app
 - [ ] T053 [P] Implement proper error handling for all edge cases
-- [ ] T054 Run full test suite and fix any failures
+- [X] T054 Run full test suite and fix any failures
 - [ ] T055 Performance testing and optimization
 - [ ] T056 Accessibility audit and AA compliance verification
 
