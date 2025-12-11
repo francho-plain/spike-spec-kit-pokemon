@@ -1,6 +1,6 @@
 <!--
-Version change: 1.0.1 → 1.1.0
-List of modified principles: Code Quality (added English language and minimal commenting requirements)
+Version change: 1.0.1 → 1.1.0 → 1.1.1
+List of modified principles: Code Quality (added atomic commits requirement for phase/story completion)
 Added sections: None
 Removed sections: None
 Templates requiring updates: None
@@ -11,7 +11,7 @@ Follow-up TODOs: None
 ## Core Principles
 
 ### I. Code Quality
-All code must adhere to clean code principles: readable, maintainable, and well-structured. All code and documentation must be in English. Use the minimum comments possible, only when essential. Development follows baby steps: small, incremental changes. Commits must use conventional commit format with type(scope): description, and include in the body summaries of changes since the last commit and representative copilot prompts to ensure traceability and clarity.
+All code must adhere to clean code principles: readable, maintainable, and well-structured. All code and documentation must be in English. Use the minimum comments possible, only when essential. Development follows baby steps: small, incremental changes. Commits must use conventional commit format with type(scope): description, and include in the body summaries of changes since the last commit and representative copilot prompts to ensure traceability and clarity. When completing a phase or user story, create an atomic commit following conventional commit format with descriptive messages that clearly indicate the completed work.
 
 ### II. Testing Standards
 Comprehensive testing is mandatory. Follow test-driven development (TDD) where feasible. Include unit tests for all functions, integration tests for components, and end-to-end tests for user flows. Tests must be automated and run in CI/CD pipelines.
@@ -34,4 +34,4 @@ Code reviews must verify compliance with principles. CI/CD must include automate
 
 Constitution supersedes all other practices. Amendments require consensus from stakeholders, documentation, and migration plans. All decisions must reference relevant principles. Versioning follows semantic versioning.
 
-**Version**: 1.1.0 | **Ratified**: 2025-12-10 | **Last Amended**: 2025-12-10
+**Version**: 1.1.1 | **Ratified**: 2025-12-10 | **Last Amended**: 2025-12-11
