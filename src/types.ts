@@ -49,3 +49,19 @@ export interface PokemonListResponse {
     url: string
   }>
 }
+
+export interface TypeResponse {
+  pokemon: Array<{
+    pokemon: {
+      name: string
+      url: string
+    }
+  }>
+}
+
+export interface GenerationResponse {
+  pokemon_species: Array<{
+    name: string
+    url: string
+  }>
+}

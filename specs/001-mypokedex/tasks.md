@@ -115,18 +115,18 @@
 
 ### Tests for User Story 3
 
-- [ ] T036 [P] [US3] Contract test for category API endpoints in tests/contract/test-categories.ts
-- [ ] T037 [US3] Integration test for category browsing in tests/integration/test-categories.ts
-- [ ] T038 [US3] E2E test for category browsing user flow in tests/e2e/specs/categories.spec.ts
+- [X] T036 [P] [US3] Contract test for category API endpoints in tests/contract/test-categories.ts
+- [X] T037 [US3] Integration test for category browsing in tests/integration/test-categories.ts
+- [X] T038 [US3] E2E test for category browsing user flow in tests/e2e/specs/categories.spec.ts
 
 ### Implementation for User Story 3
 
-- [ ] T039 [P] [US3] Create CategoryBrowser component in src/components/CategoryBrowser.tsx
-- [ ] T040 [US3] Integrate CategoryBrowser into Home page
-- [ ] T041 [US3] Implement type-based filtering from PokeAPI
-- [ ] T042 [US3] Implement generation-based filtering from PokeAPI
-- [ ] T043 [US3] Add category navigation UI to Home page
-- [ ] T044 [US3] Handle empty category results gracefully
+- [X] T039 [P] [US3] Create CategoryBrowser component in src/components/CategoryBrowser.tsx
+- [X] T040 [US3] Integrate CategoryBrowser into Home page
+- [X] T041 [US3] Implement type-based filtering from PokeAPI
+- [X] T042 [US3] Implement generation-based filtering from PokeAPI
+- [X] T043 [US3] Add category navigation UI to Home page
+- [X] T044 [US3] Handle empty category results gracefully
 
 **Checkpoint**: All user stories complete - full MyPokeDex functionality available
 

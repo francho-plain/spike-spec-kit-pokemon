@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { pokeApi } from '../services/pokeApi'
 import SearchBar from '../components/SearchBar'
 import PokemonCard from '../components/PokemonCard'
+import CategoryBrowser from '../components/CategoryBrowser'
 import Loading from '../components/Loading'
 import styles from './Home.module.css'
 
@@ -40,6 +41,7 @@ function Home() {
         </Link>
       </header>
       <SearchBar onSearch={handleSearch} />
+      <CategoryBrowser onPokemonClick={handlePokemonClick} />
       <div className={styles.results}>
         {filteredPokemon.map(pokemon => {
           const id = parseInt(pokemon.url.split('/').slice(-2, -1)[0])
