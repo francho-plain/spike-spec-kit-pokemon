@@ -23,27 +23,29 @@ function Favorites() {
   }
 
   return (
-    <div className={styles.favorites}>
-      <h1>My Favorites</h1>
-      {favorites.length === 0 ? (
-        <p>You haven't added any favorites yet. Go explore some Pokemon!</p>
-      ) : (
-        <div className={styles.grid}>
-          {favorites.map(favorite => (
-            <PokemonCard
-              key={favorite.pokemonId}
-              pokemon={{
-                id: favorite.pokemonId,
-                name: favorite.pokemonName,
-                imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${favorite.pokemonId}.png`,
-                types: []
-              }}
-              onClick={() => handlePokemonClick(favorite.pokemonId)}
-            />
-          ))}
-        </div>
-      )}
-    </div>
+    <main id="main-content">
+      <div className={styles.favorites}>
+        <h1>My Favorites</h1>
+        {favorites.length === 0 ? (
+          <p>You haven't added any favorites yet. Go explore some Pokemon!</p>
+        ) : (
+          <section className={styles.grid} aria-label="Your favorite Pokemon">
+            {favorites.map(favorite => (
+              <PokemonCard
+                key={favorite.pokemonId}
+                pokemon={{
+                  id: favorite.pokemonId,
+                  name: favorite.pokemonName,
+                  imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${favorite.pokemonId}.png`,
+                  types: []
+                }}
+                onClick={() => handlePokemonClick(favorite.pokemonId)}
+              />
+            ))}
+          </section>
+        )}
+      </div>
+    </main>
   )
 }
 

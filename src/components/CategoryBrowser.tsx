@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { pokeApi } from '../services/pokeApi'
+import PokemonCardSkeleton from './PokemonCardSkeleton'
 import styles from './CategoryBrowser.module.css'
 
 interface CategoryBrowserProps {
@@ -32,11 +33,21 @@ function CategoryBrowser({ onPokemonClick }: CategoryBrowserProps) {
   const generations = Array.from({ length: 9 }, (_, i) => i + 1)
 
   const handleTypeClick = (type: string) => {
+    // Validate that the type is in our known types list
+    if (!pokemonTypes.includes(type)) {
+      console.error(`Invalid Pokemon type: ${type}`)
+      return
+    }
     setSelectedType(type)
     setSelectedGeneration(null)
   }
 
   const handleGenerationClick = (generation: number) => {
+    // Validate generation range (1-9 are valid Pokemon generations)
+    if (generation < 1 || generation > 9) {
+      console.error(`Invalid generation: ${generation}`)
+      return
+    }
     setSelectedGeneration(generation)
     setSelectedType(null)
   }
@@ -54,14 +65,15 @@ function CategoryBrowser({ onPokemonClick }: CategoryBrowserProps) {
           const id = parseInt(url.split('/').slice(-2, -1)[0])
 
           return (
-            <div
+            <button
               key={index}
               className={styles.pokemonItem}
               onClick={() => onPokemonClick?.(id)}
-              style={{ cursor: onPokemonClick ? 'pointer' : 'default' }}
+              aria-label={`View details for ${name}`}
+              disabled={!onPokemonClick}
             >
               {name}
-            </div>
+            </button>
           )
         })}
       </div>
@@ -78,6 +90,8 @@ function CategoryBrowser({ onPokemonClick }: CategoryBrowserProps) {
               key={type}
               className={`${styles.typeButton} ${selectedType === type ? styles.selected : ''}`}
               onClick={() => handleTypeClick(type)}
+              aria-label={`Browse ${type} type Pokemon`}
+              aria-pressed={selectedType === type}
             >
               {type}
             </button>
@@ -93,6 +107,8 @@ function CategoryBrowser({ onPokemonClick }: CategoryBrowserProps) {
               key={gen}
               className={`${styles.generationButton} ${selectedGeneration === gen ? styles.selected : ''}`}
               onClick={() => handleGenerationClick(gen)}
+              aria-label={`Browse Generation ${gen} Pokemon`}
+              aria-pressed={selectedGeneration === gen}
             >
               Generation {gen}
             </button>
@@ -100,20 +116,43 @@ function CategoryBrowser({ onPokemonClick }: CategoryBrowserProps) {
         </div>
       </div>
 
-      {(typeLoading || generationLoading) && <p>Loading...</p>}
-      {(typeError || generationError) && <p>Failed to load Pokemon. Please try again.</p>}
+      {(typeLoading || generationLoading) && (
+        <div className={styles.results}>
+          <p className="sr-only" aria-live="polite">Loading Pokemon...</p>
+          <div className={styles.pokemonList}>
+            {Array.from({ length: 6 }, (_, i) => (
+              <PokemonCardSkeleton key={i} />
+            ))}
+          </div>
+        </div>
+      )}
+      {(typeError || generationError) && (
+        <div className={styles.error}>
+          <p>Unable to load Pokemon for this category. Please check your connection and try again.</p>
+          <button
+            onClick={() => window.location.reload()}
+            className={styles.retryButton}
+          >
+            Retry
+          </button>
+        </div>
+      )}
 
       {typeData && selectedType && (
         <div className={styles.results}>
           <h3>{selectedType.charAt(0).toUpperCase() + selectedType.slice(1)} Type Pokemon</h3>
-          {renderPokemonList(typeData.pokemon, 'type')}
+          <div aria-live="polite" aria-atomic="false">
+            {renderPokemonList(typeData.pokemon, 'type')}
+          </div>
         </div>
       )}
 
       {generationData && selectedGeneration && (
         <div className={styles.results}>
           <h3>Generation {selectedGeneration} Pokemon</h3>
-          {renderPokemonList(generationData.pokemon_species, 'generation')}
+          <div aria-live="polite" aria-atomic="false">
+            {renderPokemonList(generationData.pokemon_species, 'generation')}
+          </div>
         </div>
       )}
     </div>

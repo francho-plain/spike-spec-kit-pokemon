@@ -35,17 +35,29 @@ function SearchBar({ onSearch }: SearchBarProps) {
 
   return (
     <div className={styles.searchContainer}>
+      <label htmlFor="pokemon-search" className={styles.searchLabel}>
+        Search Pokemon
+      </label>
       <input
+        id="pokemon-search"
         type="text"
         value={query}
         onChange={(e) => handleInputChange(e.target.value)}
         placeholder="Search Pokemon..."
         className={styles.searchInput}
         list="pokemon-suggestions"
+        aria-describedby="search-help"
+        aria-expanded={suggestions.length > 0}
+        aria-haspopup="listbox"
+        role="combobox"
+        aria-autocomplete="list"
       />
-      <datalist id="pokemon-suggestions">
+      <div id="search-help" className={styles.searchHelp}>
+        Type to search for Pokemon by name
+      </div>
+      <datalist id="pokemon-suggestions" role="listbox">
         {suggestions.map(name => (
-          <option key={name} value={name} />
+          <option key={name} value={name} role="option" />
         ))}
       </datalist>
     </div>

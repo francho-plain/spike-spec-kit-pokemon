@@ -33,6 +33,6 @@ describe('Search Integration Test', () => {
     )
 
     expect(await screen.findByPlaceholderText('Search Pokemon...')).toBeInTheDocument()
-    expect(screen.getByText('bulbasaur')).toBeInTheDocument()
+    expect(await screen.findByText('bulbasaur')).toBeInTheDocument()
   })
 })

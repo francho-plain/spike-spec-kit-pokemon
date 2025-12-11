@@ -73,3 +73,208 @@
 .details p {
   margin: 8px 0;
 }
+
+/* Skeleton loading styles */
+.skeletonName {
+  height: 2.5em;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.skeletonFavoriteButton {
+  height: 2em;
+  width: 120px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeletonImage {
+  width: 250px;
+  height: 250px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+  margin: 0 auto 20px;
+}
+
+.skeletonStats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeletonStat {
+  height: 1em;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.skeletonTypes {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.skeletonType {
+  height: 1.5em;
+  width: 80px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 12px;
+}
+
+.skeletonAbilities {
+  margin-top: 20px;
+}
+
+.skeletonAbility {
+  height: 1em;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+  width: 90%;
+  margin-bottom: 8px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.error {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.error h2 {
+  color: #dc3545;
+  margin-bottom: 16px;
+}
+
+.error p {
+  color: #495057; /* Darker gray for better contrast (4.5:1 ratio with #f8f9fa background) */
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.errorActions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.retryButton,
+.backButton {
+  padding: 12px 20px; /* Increased for 44px minimum touch target */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+  min-height: 44px; /* Ensure minimum touch target size */
+}
+
+.retryButton {
+  background-color: #0056b3; /* Darker blue for better contrast (4.5:1 ratio with white text) */
+  color: white;
+}
+
+.retryButton:hover {
+  background-color: #004085; /* Even darker on hover */
+}
+
+.backButton {
+  background-color: #6c757d;
+  color: white;
+}
+
+.backButton:hover {
+  background-color: #545b62;
+}
+
+/* Mobile responsive design */
+@media (max-width: 768px) {
+  .detail {
+    padding: 15px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .name {
+    font-size: 2em;
+    text-align: center;
+    width: 100%;
+  }
+
+  .image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .info {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .errorActions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .retryButton,
+  .backButton {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .detail {
+    padding: 10px;
+  }
+
+  .name {
+    font-size: 1.6em;
+  }
+
+  .image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .types h3,
+  .stats h3 {
+    font-size: 1.1em;
+  }
+
+  .details {
+    padding: 15px 0;
+  }
+}

@@ -8,6 +8,12 @@ interface FavoriteButtonProps {
 }
 
 function FavoriteButton({ pokemonId, pokemonName }: FavoriteButtonProps) {
+  // Validate inputs
+  if (!pokemonId || pokemonId < 1 || !pokemonName || pokemonName.trim() === '') {
+    console.error('FavoriteButton: Invalid pokemonId or pokemonName provided')
+    return null
+  }
+
   const [isFavorite, setIsFavorite] = useState(false)
 
   useEffect(() => {
@@ -29,9 +35,15 @@ function FavoriteButton({ pokemonId, pokemonName }: FavoriteButtonProps) {
       className={`${styles.favoriteButton} ${isFavorite ? styles.favorited : ''}`}
       onClick={handleToggleFavorite}
       aria-label={isFavorite ? `Remove ${pokemonName} from favorites` : `Add ${pokemonName} to favorites`}
+      aria-pressed={isFavorite}
       data-testid="favorite-button"
     >
-      {isFavorite ? '❤️' : '🤍'}
+      <span aria-hidden="true">
+        {isFavorite ? '❤️' : '🤍'}
+      </span>
+      <span className={styles.srOnly}>
+        {isFavorite ? 'Favorited' : 'Not favorited'}
+      </span>
     </button>
   )
 }

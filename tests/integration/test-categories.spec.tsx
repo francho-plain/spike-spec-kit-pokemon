@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, act } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { BrowserRouter } from 'react-router-dom'
 import CategoryBrowser from '../../src/components/CategoryBrowser'
@@ -61,7 +61,9 @@ describe('Category Browsing Integration', () => {
 
       // Click on fire type
       const fireButton = screen.getByText('fire')
-      fireButton.click()
+      await act(async () => {
+        fireButton.click()
+      })
 
       // Verify API was called
       await waitFor(() => {
@@ -89,7 +91,9 @@ describe('Category Browsing Integration', () => {
       })
 
       const fireButton = screen.getByText('fire')
-      fireButton.click()
+      await act(async () => {
+        fireButton.click()
+      })
 
       await waitFor(() => {
         expect(mockPokeApi.getPokemonByType).toHaveBeenCalledWith('fire')
@@ -121,7 +125,9 @@ describe('Category Browsing Integration', () => {
 
       // Click on generation 1
       const gen1Button = screen.getByText('Generation 1')
-      gen1Button.click()
+      await act(async () => {
+        gen1Button.click()
+      })
 
       await waitFor(() => {
         expect(mockPokeApi.getPokemonByGeneration).toHaveBeenCalledWith(1)
@@ -144,10 +150,12 @@ describe('Category Browsing Integration', () => {
       })
 
       const fireButton = screen.getByText('fire')
-      fireButton.click()
+      await act(async () => {
+        fireButton.click()
+      })
 
       await waitFor(() => {
-        expect(screen.getByText('Failed to load Pokemon. Please try again.')).toBeInTheDocument()
+        expect(screen.getByText('Unable to load Pokemon for this category. Please check your connection and try again.')).toBeInTheDocument()
       })
     })
   })

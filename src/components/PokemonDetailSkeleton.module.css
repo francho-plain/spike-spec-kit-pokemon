@@ -1,0 +1,77 @@
+.detail {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.content {
+  display: flex;
+  gap: 20px;
+}
+
+.info {
+  flex: 1;
+}
+
+.skeletonName {
+  height: 40px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.skeletonFavoriteButton {
+  width: 40px;
+  height: 40px;
+  background: #e0e0e0;
+  border-radius: 50%;
+}
+
+.skeletonImage {
+  width: 250px;
+  height: 250px;
+  background: #e0e0e0;
+  border-radius: 8px;
+}
+
+.skeletonStats {
+  margin-bottom: 20px;
+}
+
+.skeletonStat {
+  height: 20px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.skeletonTypes {
+  margin-bottom: 20px;
+}
+
+.skeletonType {
+  height: 24px;
+  width: 60px;
+  background: #e0e0e0;
+  border-radius: 12px;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.skeletonAbilities {
+  margin-bottom: 20px;
+}
+
+.skeletonAbility {
+  height: 20px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
