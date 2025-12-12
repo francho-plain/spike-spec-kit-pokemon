@@ -54,14 +54,14 @@
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T009 [P] [US1] Unit test for Pokemon retriever tool in MCP/tests/unit/tools/test-pokemonRetriever.spec.ts
-- [ ] T010 [P] [US1] Integration test for PokeAPI service in MCP/tests/integration/api/test-pokeApi.spec.ts
+- [X] T009 [P] [US1] Unit test for Pokemon retriever tool in MCP/tests/unit/tools/test-pokemonRetriever.spec.ts
+- [X] T010 [P] [US1] Integration test for PokeAPI service in MCP/tests/integration/api/test-pokeApi.spec.ts
 
 ### Implementation for User Story 1
 
-- [ ] T011 [US1] Create pokemonRetriever tool in MCP/src/tools/pokemonRetriever.ts
-- [ ] T012 [US1] Integrate caching in retriever tool
-- [ ] T013 [US1] Add error handling for invalid Pokemon names
+- [X] T011 [US1] Create pokemonRetriever tool in MCP/src/tools/pokemonRetriever.ts
+- [X] T012 [US1] Integrate caching in retriever tool
+- [X] T013 [US1] Add error handling for invalid Pokemon names
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
