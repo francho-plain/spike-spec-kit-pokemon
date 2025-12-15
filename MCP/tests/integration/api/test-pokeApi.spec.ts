@@ -1,4 +1,4 @@
-import { PokeApiService } from '../../src/services/pokeApi';
+import { PokeApiService } from '../../../src/services/pokeApi';
 
 describe('PokeApiService', () => {
   let pokeApiService: PokeApiService;
@@ -39,22 +39,22 @@ describe('PokeApiService', () => {
 
     it('should handle rate limit errors', async () => {
       // Mock axios to simulate 429 error
-      const mockResponse = {
+      const axios = require('axios');
+      const originalGet = axios.get;
+      const error: any = new Error('Request failed with status code 429');
+      error.isAxiosError = true;
+      error.response = {
         status: 429,
         data: 'Too Many Requests'
       };
-      const originalGet = require('axios').get;
-      require('axios').get = jest.fn().mockRejectedValue({
-        response: mockResponse,
-        message: 'Request failed with status code 429'
-      });
+      axios.get = jest.fn().mockRejectedValue(error);
 
       await expect(pokeApiService.getPokemon('pikachu')).rejects.toThrow(
         'PokeAPI rate limit exceeded'
       );
 
       // Restore original
-      require('axios').get = originalGet;
+      axios.get = originalGet;
     });
   });
 });

@@ -27,7 +27,10 @@ export class PokeApiService {
         }
         throw new Error(`Failed to fetch Pokemon data: ${error.message}`);
       }
-      throw new Error(`Network error: ${error}`);
+      if (error instanceof Error) {
+        throw new Error(`Network error: ${error.message}`);
+      }
+      throw new Error('Network error: Unknown error occurred');
     }
   }
 

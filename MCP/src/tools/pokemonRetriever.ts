@@ -1,44 +1,29 @@
-import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { PokeApiService } from '../services/pokeApi.js';
-import { CacheService } from '../services/cache.js';
-import { ValidationUtils } from '../utils/validation.js';
-import { PokemonNotFoundError, handleError } from '../utils/errors.js';
+import { PokeApiService } from '../services/pokeApi';
+import { CacheService } from '../services/cache';
+import { ValidationUtils } from '../utils/validation';
+import { PokemonNotFoundError, handleError } from '../utils/errors';
 
 interface GetPokemonInput {
   name: string;
 }
 
-export class PokemonRetrieverTool implements Tool {
-  private pokeApiService: PokeApiService;
-  private cacheService: CacheService;
+const pokeApiService = new PokeApiService();
+const cacheService = new CacheService();
 
-  constructor() {
-    this.pokeApiService = new PokeApiService();
-    this.cacheService = new CacheService();
-  }
-
-  get name(): string {
-    return 'get_pokemon';
-  }
-
-  get description(): string {
-    return 'Retrieve detailed information about a Pokemon by name from PokeAPI';
-  }
-
-  get inputSchema(): any {
-    return {
-      type: 'object',
-      properties: {
-        name: {
-          type: 'string',
-          description: 'The name of the Pokemon to retrieve (case-insensitive)'
-        }
-      },
-      required: ['name']
-    };
-  }
-
-  async execute(input: GetPokemonInput): Promise<string> {
+export const pokemonRetrieverTool = {
+  name: 'get_pokemon',
+  description: 'Retrieve detailed information about a Pokemon by name from PokeAPI',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      name: {
+        type: 'string',
+        description: 'The name of the Pokemon to retrieve (case-insensitive)'
+      }
+    },
+    required: ['name']
+  },
+  execute: async (input: GetPokemonInput): Promise<string> => {
     try {
       // Validate input
       ValidationUtils.validatePokemonName(input.name);
@@ -46,18 +31,18 @@ export class PokemonRetrieverTool implements Tool {
       const sanitizedName = ValidationUtils.sanitizePokemonName(input.name);
 
       // Check cache first
-      const cached = this.cacheService.get(sanitizedName);
+      const cached = cacheService.get(sanitizedName);
       if (cached) {
-        return this.formatPokemonData(cached);
+        return formatPokemonData(cached);
       }
 
       // Fetch from API
-      const pokemon = await this.pokeApiService.getPokemon(sanitizedName);
+      const pokemon = await pokeApiService.getPokemon(sanitizedName);
 
       // Cache the result
-      this.cacheService.set(sanitizedName, pokemon);
+      cacheService.set(sanitizedName, pokemon);
 
-      return this.formatPokemonData(pokemon);
+      return formatPokemonData(pokemon);
     } catch (error) {
       if (error instanceof PokemonNotFoundError) {
         return `Error: ${error.message}`;
@@ -66,9 +51,10 @@ export class PokemonRetrieverTool implements Tool {
       return `Error: ${handledError.message}`;
     }
   }
+};
 
-  private formatPokemonData(pokemon: any): string {
-    return `**${pokemon.name.toUpperCase()}**
+function formatPokemonData(pokemon: any): string {
+  return `**${pokemon.name.toUpperCase()}**
 
 **Types:** ${pokemon.types.join(', ')}
 
@@ -83,5 +69,4 @@ export class PokemonRetrieverTool implements Tool {
 **Abilities:** ${pokemon.abilities.join(', ')}
 
 *Data cached for performance*`;
-  }
 }

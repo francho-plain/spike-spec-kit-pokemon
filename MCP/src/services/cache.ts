@@ -15,8 +15,8 @@ export class CacheService {
     return this.cache.get<T>(key);
   }
 
-  set<T>(key: string, value: T, ttl?: number): boolean {
-    return this.cache.set(key, value, ttl);
+  set<T>(key: string, value: T, ttl?: string | number): boolean {
+    return ttl !== undefined ? this.cache.set(key, value, ttl) : this.cache.set(key, value);
   }
 
   has(key: string): boolean {
