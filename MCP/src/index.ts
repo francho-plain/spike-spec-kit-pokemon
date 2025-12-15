@@ -6,6 +6,7 @@ import {
   ListToolsRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
 import { pokemonRetrieverTool } from './tools/pokemonRetriever';
+import { pokemonComparerTool } from './tools/pokemonComparer';
 
 const server = new Server({
   name: 'pokemon-mcp-server',
@@ -15,7 +16,7 @@ const server = new Server({
   },
 });
 
-// Register the Pokemon retrieval tool
+// Register the Pokemon tools
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
@@ -24,6 +25,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         description: pokemonRetrieverTool.description,
         inputSchema: pokemonRetrieverTool.inputSchema,
       },
+      {
+        name: pokemonComparerTool.name,
+        description: pokemonComparerTool.description,
+        inputSchema: pokemonComparerTool.inputSchema,
+      },
     ],
   };
 });
@@ -31,6 +37,18 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   if (request.params.name === pokemonRetrieverTool.name) {
     const result = await pokemonRetrieverTool.execute(request.params.arguments as any);
+    return {
+      content: [
+        {
+          type: 'text',
+          text: result,
+        },
+      ],
+    };
+  }
+
+  if (request.params.name === pokemonComparerTool.name) {
+    const result = await pokemonComparerTool.execute(request.params.arguments as any);
     return {
       content: [
         {

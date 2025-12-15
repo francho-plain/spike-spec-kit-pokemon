@@ -75,14 +75,14 @@
 
 ### Tests for User Story 2 ⚠️
 
-- [ ] T014 [P] [US2] Unit test for Pokemon comparer tool in MCP/tests/unit/tools/test-pokemonComparer.spec.ts
-- [ ] T015 [P] [US2] Integration test for comparison logic in MCP/tests/integration/test-comparison.spec.ts
+- [X] T014 [P] [US2] Unit test for Pokemon comparer tool in MCP/tests/unit/tools/test-pokemonComparer.spec.ts
+- [X] T015 [P] [US2] Integration test for comparison logic in MCP/tests/integration/test-comparison.spec.ts
 
 ### Implementation for User Story 2
 
-- [ ] T016 [US2] Create pokemonComparer tool in MCP/src/tools/pokemonComparer.ts
-- [ ] T017 [US2] Implement comparison logic (stats differences, type advantages)
-- [ ] T018 [US2] Add error handling for invalid Pokemon names
+- [X] T016 [US2] Create pokemonComparer tool in MCP/src/tools/pokemonComparer.ts
+- [X] T017 [US2] Implement comparison logic (stats differences, type advantages)
+- [X] T018 [US2] Add error handling for invalid Pokemon names
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
