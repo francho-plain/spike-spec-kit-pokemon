@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pokemon MCP Server Tools",
+  "description": "MCP tool contracts for Pokemon data retrieval and comparison",
+  "type": "object",
+  "properties": {
+    "tools": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "title": "Get Pokemon Information",
+            "description": "Retrieve complete information about a Pokemon by name",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the Pokemon to retrieve (case-insensitive)"
+              }
+            },
+            "required": ["name"],
+            "additionalProperties": false
+          },
+          {
+            "title": "Compare Two Pokemon",
+            "description": "Compare two Pokemon showing differences in stats, types, and abilities",
+            "type": "object",
+            "properties": {
+              "pokemon1": {
+                "type": "string",
+                "description": "Name of the first Pokemon to compare"
+              },
+              "pokemon2": {
+                "type": "string",
+                "description": "Name of the second Pokemon to compare"
+              }
+            },
+            "required": ["pokemon1", "pokemon2"],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  }
+}
