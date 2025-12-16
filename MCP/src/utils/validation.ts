@@ -1,3 +1,5 @@
+import { VALIDATION_LIMITS } from './constants';
+
 export class ValidationUtils {
   /**
    * Validates a Pokemon name
@@ -20,8 +22,8 @@ export class ValidationUtils {
       throw new Error('Pokemon name must contain only lowercase letters, numbers, and hyphens');
     }
 
-    if (trimmed.length > 50) {
-      throw new Error('Pokemon name is too long (max 50 characters)');
+    if (trimmed.length > VALIDATION_LIMITS.MAX_NAME_LENGTH) {
+      throw new Error(`Pokemon name is too long (max ${VALIDATION_LIMITS.MAX_NAME_LENGTH} characters)`);
     }
 
     return true;
@@ -41,12 +43,18 @@ export class ValidationUtils {
    * @param stats - The stats object to validate
    * @returns true if valid
    */
-  static validatePokemonStats(stats: any): boolean {
+  static validatePokemonStats(stats: Record<string, number>): boolean {
     const requiredStats = ['hp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed'];
 
     for (const stat of requiredStats) {
-      if (typeof stats[stat] !== 'number' || stats[stat] < 0 || stats[stat] > 255) {
-        throw new Error(`Invalid ${stat} stat: must be a number between 0 and 255`);
+      if (
+        typeof stats[stat] !== 'number' ||
+        stats[stat] < VALIDATION_LIMITS.MIN_STAT_VALUE ||
+        stats[stat] > VALIDATION_LIMITS.MAX_STAT_VALUE
+      ) {
+        throw new Error(
+          `Invalid ${stat} stat: must be a number between ${VALIDATION_LIMITS.MIN_STAT_VALUE} and ${VALIDATION_LIMITS.MAX_STAT_VALUE}`
+        );
       }
     }
 

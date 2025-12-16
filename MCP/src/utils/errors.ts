@@ -6,7 +6,7 @@ export class PokemonNotFoundError extends Error {
 }
 
 export class PokeApiError extends Error {
-  constructor(message: string, public statusCode?: number) {
+  constructor(message: string) {
     super(`PokeAPI error: ${message}`);
     this.name = 'PokeApiError';
   }
@@ -39,8 +39,10 @@ export function handleError(error: unknown): Error {
 }
 
 export function isNetworkError(error: unknown): boolean {
-  return error instanceof PokeApiError ||
-         (error instanceof Error && error.message.includes('Network error'));
+  return (
+    error instanceof PokeApiError ||
+    (error instanceof Error && error.message.includes('Network error'))
+  );
 }
 
 export function isRateLimitError(error: unknown): boolean {

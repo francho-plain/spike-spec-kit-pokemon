@@ -1,12 +1,13 @@
 import NodeCache from 'node-cache';
+import { CACHE_CONFIG } from '../utils/constants';
 
 export class CacheService {
   private cache: NodeCache;
 
-  constructor(ttlSeconds: number = 3600) { // 1 hour default TTL
+  constructor(ttlSeconds: number = CACHE_CONFIG.DEFAULT_TTL) {
     this.cache = new NodeCache({
       stdTTL: ttlSeconds,
-      checkperiod: ttlSeconds * 0.2, // Check for expired keys every 12 minutes
+      checkperiod: ttlSeconds * CACHE_CONFIG.CHECK_PERIOD_MULTIPLIER,
       useClones: false, // Don't clone objects for better performance
     });
   }

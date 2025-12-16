@@ -1,18 +1,19 @@
 import axios, { AxiosResponse } from 'axios';
 import { PokemonApiResponse, Pokemon, PokemonStats } from '../types/pokemon';
+import { API_CONFIG, STAT_NAMES } from '../utils/constants';
 
 export class PokeApiService {
-  private readonly baseUrl = 'https://pokeapi.co/api/v2';
+  private readonly baseUrl = API_CONFIG.BASE_URL;
 
   async getPokemon(name: string): Promise<Pokemon> {
     try {
       const response: AxiosResponse<PokemonApiResponse> = await axios.get(
         `${this.baseUrl}/pokemon/${name.toLowerCase()}`,
         {
-          timeout: 5000, // 5 second timeout
+          timeout: API_CONFIG.TIMEOUT,
           headers: {
-            'User-Agent': 'Pokemon-MCP-Server/1.0'
-          }
+            'User-Agent': API_CONFIG.USER_AGENT,
+          },
         }
       );
 
@@ -35,22 +36,21 @@ export class PokeApiService {
   }
 
   private transformApiResponse(apiData: PokemonApiResponse): Pokemon {
+    // Create a map for faster stat lookup
+    const statsMap = new Map(apiData.stats.map(s => [s.stat.name, s.base_stat]));
+    
     const stats: PokemonStats = {
-      hp: apiData.stats.find(s => s.stat.name === 'hp')?.base_stat || 0,
-      attack: apiData.stats.find(s => s.stat.name === 'attack')?.base_stat || 0,
-      defense: apiData.stats.find(s => s.stat.name === 'defense')?.base_stat || 0,
-      specialAttack: apiData.stats.find(s => s.stat.name === 'special-attack')?.base_stat || 0,
-      specialDefense: apiData.stats.find(s => s.stat.name === 'special-defense')?.base_stat || 0,
-      speed: apiData.stats.find(s => s.stat.name === 'speed')?.base_stat || 0,
+      hp: statsMap.get(STAT_NAMES.HP) || 0,
+      attack: statsMap.get(STAT_NAMES.ATTACK) || 0,
+      defense: statsMap.get(STAT_NAMES.DEFENSE) || 0,
+      specialAttack: statsMap.get(STAT_NAMES.SPECIAL_ATTACK) || 0,
+      specialDefense: statsMap.get(STAT_NAMES.SPECIAL_DEFENSE) || 0,
+      speed: statsMap.get(STAT_NAMES.SPEED) || 0,
     };
 
-    const types = apiData.types
-      .sort((a, b) => a.slot - b.slot)
-      .map(t => t.type.name);
+    const types = apiData.types.sort((a, b) => a.slot - b.slot).map((t) => t.type.name);
 
-    const abilities = apiData.abilities
-      .filter(a => !a.is_hidden)
-      .map(a => a.ability.name);
+    const abilities = apiData.abilities.filter((a) => !a.is_hidden).map((a) => a.ability.name);
 
     return {
       name: apiData.name,

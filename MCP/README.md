@@ -51,12 +51,9 @@ node scripts/test-server.js
 ## Available Tools
 
 ### `get_pokemon`
-
 Retrieve detailed information about a Pokemon.
-
 **Input:**
 - `name` (string, required): Pokemon name (case-insensitive)
-
 **Output:**
 ```markdown
 **PIKACHU**
@@ -72,6 +69,40 @@ Retrieve detailed information about a Pokemon.
 - Speed: 90
 
 **Abilities:** static, lightning-rod
+
+*Data cached for performance*
+```
+
+### `compare_pokemon`
+Compare two Pokemon and show differences in stats, types, and abilities.
+**Input:**
+- `pokemon1` (string, required): Name of the first Pokemon
+- `pokemon2` (string, required): Name of the second Pokemon
+**Output:**
+```markdown
+**PIKACHU** vs **BULBASAUR**
+
+## Stats Difference
+| Stat | PIKACHU | BULBASAUR | Difference |
+|------|------|------|------------|
+| HP | 35 | 45 | -10 |
+| Attack | 55 | 49 | +6 |
+| Defense | 40 | 49 | -9 |
+| Special Attack | 50 | 65 | -15 |
+| Special Defense | 50 | 65 | -15 |
+| Speed | 90 | 45 | +45 |
+
+## Type Comparison
+**electric** vs **grass/poison**
+
+**Unique to first Pokemon:** electric
+**Unique to second Pokemon:** grass, poison
+
+## Ability Comparison
+**static** vs **overgrow**
+
+**Unique to first Pokemon:** static
+**Unique to second Pokemon:** overgrow
 
 *Data cached for performance*
 ```
@@ -159,7 +190,7 @@ npm run format
 ## Roadmap
 
 - [x] User Story 1: Pokemon information retrieval
-- [ ] User Story 2: Compare two Pokemon
+- [x] User Story 2: Compare two Pokemon
 - [ ] Enhanced caching strategies
 - [ ] Performance optimization
 - [ ] Additional Pokemon data (moves, evolution)

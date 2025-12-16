@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { pokemonRetrieverTool } from '../../../src/tools/pokemonRetriever';
 
 describe('PokemonRetrieverTool', () => {

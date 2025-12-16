@@ -1,14 +1,11 @@
-import { PokeApiService } from '../services/pokeApi';
-import { CacheService } from '../services/cache';
 import { ValidationUtils } from '../utils/validation';
 import { PokemonNotFoundError, handleError } from '../utils/errors';
+import { getPokemonWithCache } from '../utils/pokemonHelpers';
+import { Pokemon } from '../types/pokemon';
 
 interface GetPokemonInput {
   name: string;
 }
-
-const pokeApiService = new PokeApiService();
-const cacheService = new CacheService();
 
 export const pokemonRetrieverTool = {
   name: 'get_pokemon',
@@ -18,10 +15,10 @@ export const pokemonRetrieverTool = {
     properties: {
       name: {
         type: 'string',
-        description: 'The name of the Pokemon to retrieve (case-insensitive)'
-      }
+        description: 'The name of the Pokemon to retrieve (case-insensitive)',
+      },
     },
-    required: ['name']
+    required: ['name'],
   },
   execute: async (input: GetPokemonInput): Promise<string> => {
     try {
@@ -30,17 +27,8 @@ export const pokemonRetrieverTool = {
 
       const sanitizedName = ValidationUtils.sanitizePokemonName(input.name);
 
-      // Check cache first
-      const cached = cacheService.get(sanitizedName);
-      if (cached) {
-        return formatPokemonData(cached);
-      }
-
-      // Fetch from API
-      const pokemon = await pokeApiService.getPokemon(sanitizedName);
-
-      // Cache the result
-      cacheService.set(sanitizedName, pokemon);
+      // Fetch Pokemon with cache
+      const pokemon = await getPokemonWithCache(sanitizedName);
 
       return formatPokemonData(pokemon);
     } catch (error) {
@@ -50,10 +38,10 @@ export const pokemonRetrieverTool = {
       const handledError = handleError(error);
       return `Error: ${handledError.message}`;
     }
-  }
+  },
 };
 
-function formatPokemonData(pokemon: any): string {
+function formatPokemonData(pokemon: Pokemon): string {
   return `**${pokemon.name.toUpperCase()}**
 
 **Types:** ${pokemon.types.join(', ')}

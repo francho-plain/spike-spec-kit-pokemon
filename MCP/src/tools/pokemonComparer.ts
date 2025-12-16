@@ -1,15 +1,13 @@
-import { PokeApiService } from '../services/pokeApi';
-import { CacheService } from '../services/cache';
 import { ValidationUtils } from '../utils/validation';
 import { PokemonNotFoundError, handleError } from '../utils/errors';
+import { getPokemonWithCache } from '../utils/pokemonHelpers';
+import { Pokemon, PokemonStats } from '../types/pokemon';
+import { STAT_DISPLAY_NAMES } from '../utils/constants';
 
 interface ComparePokemonInput {
   pokemon1: string;
   pokemon2: string;
 }
-
-const pokeApiService = new PokeApiService();
-const cacheService = new CacheService();
 
 export const pokemonComparerTool = {
   name: 'compare_pokemon',
@@ -19,14 +17,14 @@ export const pokemonComparerTool = {
     properties: {
       pokemon1: {
         type: 'string',
-        description: 'Name of the first Pokemon to compare'
+        description: 'Name of the first Pokemon to compare',
       },
       pokemon2: {
         type: 'string',
-        description: 'Name of the second Pokemon to compare'
-      }
+        description: 'Name of the second Pokemon to compare',
+      },
     },
-    required: ['pokemon1', 'pokemon2']
+    required: ['pokemon1', 'pokemon2'],
   },
   execute: async (input: ComparePokemonInput): Promise<string> => {
     try {
@@ -46,7 +44,7 @@ export const pokemonComparerTool = {
       // Fetch both Pokemon
       const [pokemon1, pokemon2] = await Promise.all([
         getPokemonWithCache(name1),
-        getPokemonWithCache(name2)
+        getPokemonWithCache(name2),
       ]);
 
       return formatComparison(pokemon1, pokemon2);
@@ -57,21 +55,10 @@ export const pokemonComparerTool = {
       const handledError = handleError(error);
       return `Error: ${handledError.message}`;
     }
-  }
+  },
 };
 
-async function getPokemonWithCache(name: string) {
-  const cached = cacheService.get(name);
-  if (cached) {
-    return cached;
-  }
-
-  const pokemon = await pokeApiService.getPokemon(name);
-  cacheService.set(name, pokemon);
-  return pokemon;
-}
-
-function formatSamePokemonComparison(pokemon: any): string {
+function formatSamePokemonComparison(pokemon: Pokemon): string {
   return `**${pokemon.name.toUpperCase()}** vs **${pokemon.name.toUpperCase()}**
 
 These are identical Pokemon - no comparison needed!
@@ -91,7 +78,7 @@ These are identical Pokemon - no comparison needed!
 *Data cached for performance*`;
 }
 
-function formatComparison(pokemon1: any, pokemon2: any): string {
+function formatComparison(pokemon1: Pokemon, pokemon2: Pokemon): string {
   const statsDiff = calculateStatsDifference(pokemon1.stats, pokemon2.stats);
   const typeComparison = compareTypes(pokemon1.types, pokemon2.types);
   const abilityComparison = compareAbilities(pokemon1.abilities, pokemon2.abilities);
@@ -110,22 +97,37 @@ ${abilityComparison}
 *Data cached for performance*`;
 }
 
-function calculateStatsDifference(stats1: any, stats2: any) {
+function calculateStatsDifference(stats1: PokemonStats, stats2: PokemonStats) {
   return {
     hp: stats1.hp - stats2.hp,
     attack: stats1.attack - stats2.attack,
     defense: stats1.defense - stats2.defense,
     specialAttack: stats1.specialAttack - stats2.specialAttack,
     specialDefense: stats1.specialDefense - stats2.specialDefense,
-    speed: stats1.speed - stats2.speed
+    speed: stats1.speed - stats2.speed,
   };
 }
 
-function formatStatsComparison(pokemon1: any, pokemon2: any, diff: any): string {
-  const statNames = ['HP', 'Attack', 'Defense', 'Special Attack', 'Special Defense', 'Speed'];
-  const statKeys = ['hp', 'attack', 'defense', 'specialAttack', 'specialDefense', 'speed'];
+function formatStatsComparison(
+  pokemon1: Pokemon,
+  pokemon2: Pokemon,
+  diff: Record<string, number>
+): string {
+  const statKeys: (keyof PokemonStats)[] = [
+    'hp',
+    'attack',
+    'defense',
+    'specialAttack',
+    'specialDefense',
+    'speed',
+  ];
 
-  let result = '| Stat | ' + pokemon1.name.toUpperCase() + ' | ' + pokemon2.name.toUpperCase() + ' | Difference |\n';
+  let result =
+    '| Stat | ' +
+    pokemon1.name.toUpperCase() +
+    ' | ' +
+    pokemon2.name.toUpperCase() +
+    ' | Difference |\n';
   result += '|------|------|------|------------|\n';
 
   statKeys.forEach((key, index) => {
@@ -133,16 +135,16 @@ function formatStatsComparison(pokemon1: any, pokemon2: any, diff: any): string 
     const val2 = pokemon2.stats[key];
     const difference = diff[key];
     const diffSymbol = difference > 0 ? '+' : '';
-    result += `| ${statNames[index]} | ${val1} | ${val2} | ${diffSymbol}${difference} |\n`;
+    result += `| ${STAT_DISPLAY_NAMES[index]} | ${val1} | ${val2} | ${diffSymbol}${difference} |\n`;
   });
 
   return result;
 }
 
 function compareTypes(types1: string[], types2: string[]): string {
-  const unique1 = types1.filter(t => !types2.includes(t));
-  const unique2 = types2.filter(t => !types1.includes(t));
-  const common = types1.filter(t => types2.includes(t));
+  const unique1 = types1.filter((t) => !types2.includes(t));
+  const unique2 = types2.filter((t) => !types1.includes(t));
+  const common = types1.filter((t) => types2.includes(t));
 
   let result = `**${types1.join('/')}** vs **${types2.join('/')}**\n\n`;
 
@@ -162,9 +164,9 @@ function compareTypes(types1: string[], types2: string[]): string {
 }
 
 function compareAbilities(abilities1: string[], abilities2: string[]): string {
-  const unique1 = abilities1.filter(a => !abilities2.includes(a));
-  const unique2 = abilities2.filter(a => !abilities1.includes(a));
-  const common = abilities1.filter(a => abilities2.includes(a));
+  const unique1 = abilities1.filter((a) => !abilities2.includes(a));
+  const unique2 = abilities2.filter((a) => !abilities1.includes(a));
+  const common = abilities1.filter((a) => abilities2.includes(a));
 
   let result = `**${abilities1.join(', ')}** vs **${abilities2.join(', ')}**\n\n`;
 
