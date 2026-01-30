@@ -1,5 +1,5 @@
 import NodeCache from 'node-cache';
-import { CACHE_CONFIG } from '../utils/constants';
+import { CACHE_CONFIG } from '../utils/constants.js';
 
 export class CacheService {
   private cache: NodeCache;

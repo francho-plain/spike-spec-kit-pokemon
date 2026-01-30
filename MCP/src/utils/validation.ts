@@ -1,4 +1,4 @@
-import { VALIDATION_LIMITS } from './constants';
+import { VALIDATION_LIMITS } from './constants.js';
 
 export class ValidationUtils {
   /**

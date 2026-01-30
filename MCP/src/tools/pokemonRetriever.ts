@@ -1,7 +1,7 @@
-import { ValidationUtils } from '../utils/validation';
-import { PokemonNotFoundError, handleError } from '../utils/errors';
-import { getPokemonWithCache } from '../utils/pokemonHelpers';
-import { Pokemon } from '../types/pokemon';
+import { ValidationUtils } from '../utils/validation.js';
+import { PokemonNotFoundError, handleError } from '../utils/errors.js';
+import { getPokemonWithCache } from '../utils/pokemonHelpers.js';
+import { Pokemon } from '../types/pokemon.js';
 
 interface GetPokemonInput {
   name: string;

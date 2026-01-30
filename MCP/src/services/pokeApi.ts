@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
-import { PokemonApiResponse, Pokemon, PokemonStats } from '../types/pokemon';
-import { API_CONFIG, STAT_NAMES } from '../utils/constants';
+import { PokemonApiResponse, Pokemon, PokemonStats } from '../types/pokemon.js';
+import { API_CONFIG, STAT_NAMES } from '../utils/constants.js';
 
 export class PokeApiService {
   private readonly baseUrl = API_CONFIG.BASE_URL;

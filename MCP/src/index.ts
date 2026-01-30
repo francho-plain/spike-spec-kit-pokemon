@@ -5,8 +5,8 @@ import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
-import { pokemonRetrieverTool } from './tools/pokemonRetriever';
-import { pokemonComparerTool } from './tools/pokemonComparer';
+import { pokemonRetrieverTool } from './tools/pokemonRetriever.js';
+import { pokemonComparerTool } from './tools/pokemonComparer.js';
 
 const server = new Server({
   name: 'pokemon-mcp-server',

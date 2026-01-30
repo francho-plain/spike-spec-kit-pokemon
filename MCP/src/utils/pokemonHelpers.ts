@@ -1,6 +1,6 @@
-import { Pokemon } from '../types/pokemon';
-import { PokeApiService } from '../services/pokeApi';
-import { CacheService } from '../services/cache';
+import { Pokemon } from '../types/pokemon.js';
+import { PokeApiService } from '../services/pokeApi.js';
+import { CacheService } from '../services/cache.js';
 
 /**
  * Shared helper functions for Pokemon operations

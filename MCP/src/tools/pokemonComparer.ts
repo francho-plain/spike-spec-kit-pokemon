@@ -1,8 +1,8 @@
-import { ValidationUtils } from '../utils/validation';
-import { PokemonNotFoundError, handleError } from '../utils/errors';
-import { getPokemonWithCache } from '../utils/pokemonHelpers';
-import { Pokemon, PokemonStats } from '../types/pokemon';
-import { STAT_DISPLAY_NAMES } from '../utils/constants';
+import { ValidationUtils } from '../utils/validation.js';
+import { PokemonNotFoundError, handleError } from '../utils/errors.js';
+import { getPokemonWithCache } from '../utils/pokemonHelpers.js';
+import { Pokemon, PokemonStats } from '../types/pokemon.js';
+import { STAT_DISPLAY_NAMES } from '../utils/constants.js';
 
 interface ComparePokemonInput {
   pokemon1: string;
