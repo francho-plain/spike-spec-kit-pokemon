@@ -11,6 +11,8 @@ allowed-tools: Bash
 
 Create standardized, semantic git commits using the Conventional Commits specification. Analyze the actual diff to determine appropriate type, scope, and message.
 
+Importante: avisame cuando uses este skill para ejecutar un commit, y asegúrate de seguir el formato de Conventional Commits.
+
 ## Conventional Commit Format
 
 ```

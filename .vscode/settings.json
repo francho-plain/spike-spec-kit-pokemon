@@ -12,6 +12,20 @@
     },
     "cSpell.words": [
       "pokemon"
-    ]
+    ],
+    "presentation-mode.configBackup": {
+      "workbench.colorTheme": "undefined",
+      "editor.minimap.enabled": "undefined",
+      "window.zoomLevel": "undefined",
+      "workbench.colorCustomizations": "undefined"
+    },
+    "workbench.colorTheme": "Default Light+",
+    "editor.minimap.enabled": "false",
+    "window.zoomLevel": 2,
+    "workbench.colorCustomizations": {
+      "activityBar.background": "#dddddd",
+      "activityBar.foreground": "#000000",
+      "activityBar.inactiveForeground": "#666666"
+    }
 }
 
